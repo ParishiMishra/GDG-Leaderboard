@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
             <td>${item.name}</td>
             <td>${item.redemptionStatus}</td>
             <td>${item.cloudProfile}</td>
+            <td>${item.completion}</td>
             <td>${item.chapterCompleted}</td>
             <td>${item.arcadeCompleted}</td>
             <td>${item.arcadeStatus}</td>

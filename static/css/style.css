@@ -5,6 +5,55 @@ body {
     color: #333;
 }
 
+/* Responsive Table */
+.table-responsive {
+    overflow-x: auto; /* Enables horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Enables smooth scrolling on iOS */
+}
+
+.styled-table {
+    width: 100%; /* Full width */
+    border-collapse: collapse; /* Ensures borders are combined */
+}
+
+/* Ensure table and text size adjusts on smaller screens */
+.styled-table th, .styled-table td {
+    padding: 12px 10px; /* Padding for cells */
+    font-size: 14px; /* Smaller text size */
+}
+
+@media (max-width: 600px) {
+    /* Adjustments for small screens */
+    .styled-table th, .styled-table td {
+        padding: 10px 5px; /* Reduce padding */
+        font-size: 12px; /* Smaller font size */
+    }
+    
+    .styled-table thead {
+        display: none; /* Hide header on small screens */
+    }
+    
+    .styled-table tr {
+        display: block; /* Make rows block elements */
+        margin-bottom: 10px; /* Add margin between rows */
+    }
+    
+    .styled-table td {
+        display: flex; /* Use flexbox for layout */
+        justify-content: space-between; /* Space between items */
+        padding: 8px; /* Padding */
+        border: 1px solid #dddddd; /* Add border for better visibility */
+    }
+
+    /* Adding pseudo-elements to display labels */
+    .styled-table td:before {
+        content: attr(data-label); /* Use the 'data-label' attribute */
+        flex: 1; /* Take up space */
+        font-weight: bold; /* Make it bold */
+        color: #1A73E8; /* Optional: style label text */
+    }
+}
+
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -27,6 +76,7 @@ h2 {
     color: #555;
 }
 
+
 /* Table styling */
 .styled-table {
     width: 100%;
@@ -34,37 +84,68 @@ h2 {
     margin: 25px 0;
     font-size: 18px;
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+    border-radius: 10px; /* Rounded corners for the whole table */
+    overflow: hidden; /* This ensures that the table respects the border-radius */
+}
+
+/* Header styling */
+.styled-table thead {
+    border-radius: 10px 10px 0 0; /* Rounded corners for the top */
+    overflow: hidden; /* Ensures the header respects the rounded corners */
+}
+.styled-table thead th {
+    border-right: 1px solid rgb(43, 42, 42); /* Add right border */
+}
+
+/* Remove the right border from the last header cell */
+.styled-table thead th:last-child {
+    border-right: none; /* No border on the last header cell */
+}
+
+.styled-table thead th {
+    padding: 12px 15px; /* Add padding for a better look */
+    text-align: center; /* Center align the header text */
+    background-color: #1A73E8; /* Header background color */
+    color: #e8e8e8; /* Header text color */
 }
 
 .styled-table thead tr {
-    background-color: #1A73E8; /* Header color (GDSC logo blue) */
-    color: #ffffff;
+    background-color: #1a73e8e1; /* Header color (GDSC logo blue) */
+    color: #e7dddd;
     text-align: left;
     font-weight: bold;
 }
 
+/* Individual cell styling */
 .styled-table th, .styled-table td {
     padding: 12px 15px;
+    text-align: center; /* Centers content horizontally */
+    vertical-align: middle; /* Centers content vertically */
+    font-size: 14px; /* Reduce the text size */
+    color: rgb(43, 42, 42); /* Slightly transparent text (80% opacity) */
 }
 
-.styled-table tbody tr {
-    border-bottom: 1px solid #dddddd;
-}
-
-.styled-table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
-
-.styled-table tbody tr:last-of-type {
+.styled-table tbody tr:last-of-type td {
     border-bottom: 2px solid #1A73E8;
+    border-radius: 0 10px 10px 10px; /* Rounds the bottom corners */
 }
 
 /* Status styling */
 .status {
     padding: 5px 10px;
     border-radius: 5px;
-    color: #fff;
     font-weight: bold;
+    font-size: 12px; /* Smaller text for status */
+    color: rgba(255, 255, 255, 0.9); /* Slightly transparent white text (90% opacity) */
+}
+    
+
+.status.yes{
+    background-color: #34A853;
+}
+
+.status.no{
+    background-color: #EA4335;
 }
 
 .status.done {

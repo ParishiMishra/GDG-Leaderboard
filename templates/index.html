@@ -38,33 +38,36 @@
         <input type="text" id="search-input" oninput="filterParticipants()" placeholder="Search by name...">
 
         <!-- participants table -->
-        <table class="styled-table">
-            <thead>
+        <div class="table-responsive">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Redemption Status</th>
+                        <th>Cloud Skill Boost Profile</th>
+                        <th>Completion of Chapter and Arcade</th>
+                        <th>No. of Chapter Completed</th>
+                        <th>No. of Arcade Completed</th>
+                        <th>Arcade Game Completion</th>
+                    </tr>
+                </thead>
+                <tbody>
+                <!-- Jinja2 loop to dynamically generate rows -->
+                {% for participant in participants %}
                 <tr>
-                    <th>Name</th>
-                    <th>Redemption Status</th>
-                    <th>Cloud Skill Boost Profile</th>
-                    <th>Completion of Chapter and Arcade</th>
-                    <th>No. of Chapter Completed</th>
-                    <th>No. of Arcade Completed</th>
-                    <th>Arcade Game Completion</th>
+                    <td data-label="Name">{{ participant.name }}</td>
+                    <td data-label="Redemption Status"><span class="status {{ participant.redemption_status|lower }}">{{ participant.redemption_status }}</span></td>
+                    <td data-label="Cloud Skill Boost Profile"><a href="{{ participant.profile_url }}" class="public-profile">Public Profile</a></td>
+                    <td data-label="GenAI Study Jam Completion"><span class="status {{ participant.completion|lower }}">{{ participant.completion }}</span></td>
+                    <td data-label="No. of Chapters Completed">{{ participant.chapters_completed }}</td>
+                    <td data-label="No. of Arcades Completed">{{ participant.arcades_completed }}</td>
+                    <td data-label="Arcade Game Completion"><span class="status {{ participant.arcade_completion|lower }}">{{ participant.arcade_completion }}</span></td>
                 </tr>
-            </thead>
-            <tbody>
-              <!-- Jinja2 loop to dynamically generate rows -->
-              {% for participant in participants %}
-              <tr>
-                  <td>{{ participant.name }}</td>
-                  <td><span class="status {{ participant.redemption_status|lower }}">{{ participant.redemption_status }}</span></td>
-                  <td><a href="{{ participant.profile_url }}" class="public-profile">Public Profile</a></td>
-                  <td>{{ participant.completion }}</td>
-                  <td>{{ participant.chapters_completed }}</td>
-                  <td>{{ participant.arcades_completed }}</td>
-                  <td><span class="status {{ participant.arcade_completion|lower }}">{{ participant.arcade_completion }}</span></td>
-              </tr>
-              {% endfor %}
-            </tbody>
-        </table>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div> 
     </div>
 </body>
 </html>

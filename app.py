@@ -9,7 +9,7 @@ participants = [
         'name': 'VIVEK JETANI',
         'redemption_status': 'Done',
         'profile_url': 'https://cloud.google.com/profile/vivek',
-        'completion': 'No!',
+        'completion': 'No',
         'chapters_completed': 5,
         'arcades_completed': 1,
         'arcade_completion': 'Completed'
@@ -18,7 +18,7 @@ participants = [
         'name': 'JANE DOE',
         'redemption_status': 'Pending',
         'profile_url': 'https://cloud.google.com/profile/jane',
-        'completion': 'Yes!',
+        'completion': 'Yes',
         'chapters_completed': 3,
         'arcades_completed': 2,
         'arcade_completion': 'Pending'
@@ -27,7 +27,7 @@ participants = [
         'name': 'Joe',
         'redemption_status': 'Done',
         'profile_url': 'https://cloud.google.com/profile/jane',
-        'completion': 'Yes!',
+        'completion': 'Yes',
         'chapters_completed': 15,
         'arcades_completed': 1,
         'arcade_completion': 'Pending'
@@ -40,9 +40,9 @@ def index():
 
     for participant in participants:
         if participant['chapters_completed']==15 and participant['arcades_completed']==1:
-            participant['completion']='Yes!'
+            participant['completion']='Yes'
         else:
-            participant['completion']='No!'
+            participant['completion']='No'
         
     # Pass the participants list to the template
     return render_template('index.html', participants=participants)
