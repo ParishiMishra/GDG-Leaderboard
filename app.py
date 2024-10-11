@@ -1,43 +1,30 @@
 from flask import Flask, render_template
+import csv
 
 app = Flask(__name__)
 
 # This data could be fetched from a database, API, or CSV file.
 # Here is an example of how it might look:
-participants = [
-    {
-        'name': 'VIVEK JETANI',
-        'redemption_status': 'Done',
-        'profile_url': 'https://cloud.google.com/profile/vivek',
-        'completion': 'No',
-        'chapters_completed': 5,
-        'arcades_completed': 1,
-        'arcade_completion': 'Completed'
-    },
-    {
-        'name': 'JANE DOE',
-        'redemption_status': 'Pending',
-        'profile_url': 'https://cloud.google.com/profile/jane',
-        'completion': 'Yes',
-        'chapters_completed': 3,
-        'arcades_completed': 2,
-        'arcade_completion': 'Pending'
-    },
-    {
-        'name': 'Joe',
-        'redemption_status': 'Done',
-        'profile_url': 'https://cloud.google.com/profile/jane',
-        'completion': 'Yes',
-        'chapters_completed': 15,
-        'arcades_completed': 1,
-        'arcade_completion': 'Pending'
-    },
-    # Add more participants dynamically here
-]
+def read_csv():
+    participants = []
+    with open('participants.csv', 'r') as file:
+        csv_reader = csv.DictReader(file)
+        for row in csv_reader:
+            participants.append({
+                'name': row['Name'],
+                'redemption_status': row['Redemption Status'],
+                'profile_url': row['Cloud Skill Boost Profile'],
+                'completion': row['Completion of Chapter and Arcade'],
+                'chapters_completed': int(row['No. of Chapter Completed']),
+                'arcades_completed': int(row['No. of Arcade Completed']),
+                'arcade_completion': row['Arcade Game Completion']
+            })
+    return participants
+
 
 @app.route('/')
 def index():
-
+    participants = read_csv()
     for participant in participants:
         if participant['chapters_completed']==15 and participant['arcades_completed']==1:
             participant['completion']='Yes'
