@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Populate table with data
         updateTable(data);
   
-        // Add event listener for search functionality
+        // Adding event listener for search functionality
         searchBar.addEventListener('input', function() {
           const searchTerm = searchBar.value.toLowerCase();
           const filteredData = data.filter(item => 
