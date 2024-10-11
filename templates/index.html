@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GDSC Study Jams</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Google Developer Student Club - SRCASW</h1>
+            <h2>SRCASW - GenAI Study Jams 2024</h2>
+        </header>
+
+        <table class="styled-table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Redemption Status</th>
+                    <th>Cloud Skill Boost Profile</th>
+                    <th>Completion of Chapter and Arcade</th>
+                    <th>No. of Chapter Completed</th>
+                    <th>No. of Arcade Completed</th>
+                    <th>Arcade Game Completion</th>
+                </tr>
+            </thead>
+            <tbody>
+              <!-- Jinja2 loop to dynamically generate rows -->
+              {% for participant in participants %}
+              <tr>
+                  <td>{{ participant.name }}</td>
+                  <td><span class="status {{ participant.redemption_status|lower }}">{{ participant.redemption_status }}</span></td>
+                  <td><a href="{{ participant.profile_url }}" class="public-profile">Public Profile</a></td>
+                  <td>{{ participant.completion }}</td>
+                  <td>{{ participant.chapters_completed }}</td>
+                  <td>{{ participant.arcades_completed }}</td>
+                  <td><span class="status {{ participant.arcade_completion|lower }}">{{ participant.arcade_completion }}</span></td>
+              </tr>
+              {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
