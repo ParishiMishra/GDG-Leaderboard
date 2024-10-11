@@ -5,6 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GDSC Study Jams</title>
     <link rel="stylesheet" href="{{url_for('static', filename='css/style.css')}}">
+    <script>
+        // JavaScript function to filter participants as the input changes
+        function filterParticipants() {
+            let query = document.getElementById('search-input').value.toLowerCase();
+            let rows = document.querySelectorAll('tbody tr');
+            
+            rows.forEach(row => {
+                let name = row.querySelector('td:first-child').textContent.toLowerCase();
+                if (name.includes(query) || query === '') {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+
+        // To automatically show all participants when there's no input
+        document.addEventListener('DOMContentLoaded', () => {
+            filterParticipants(); // Initial run to ensure all participants are displayed
+        });
+    </script>
 </head>
 <body>
     <div class="container">
@@ -13,6 +34,10 @@
             <h2>SRCASW - GenAI Study Jams 2024</h2>
         </header>
 
+        <!-- Search bar -->
+        <input type="text" id="search-input" oninput="filterParticipants()" placeholder="Search by name...">
+
+        <!-- participants table -->
         <table class="styled-table">
             <thead>
                 <tr>
