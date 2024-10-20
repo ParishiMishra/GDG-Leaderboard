@@ -2,14 +2,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const searchBar = document.getElementById('searchBar');
     const tableBody = document.getElementById('table-body');
   
-    // Fetch data from the backend
+    
     fetch('/api/data')
       .then(response => response.json())
       .then(data => {
-        // Populate table with data
+        
         updateTable(data);
   
-        // Adding event listener for search functionality
         searchBar.addEventListener('input', function() {
           const searchTerm = searchBar.value.toLowerCase();
           const filteredData = data.filter(item => 
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
       });
   
     function updateTable(data) {
-      tableBody.innerHTML = ''; // Clear existing rows
+      tableBody.innerHTML = '';
       data.forEach(item => {
         const row = `
           <tr>
