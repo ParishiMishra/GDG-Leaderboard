@@ -19,7 +19,6 @@ def read_csv():
                 'num_skill_badges': row['# of Skill Badges Completed'],
                 'completion': row['All Skill Badges & Games Completed'],
                 'num_arcade_games': row['# of Arcade Games Completed'],
-                'arcade_completion': row['All Skill Badges & Games Completed']
             })
     return participants
 
